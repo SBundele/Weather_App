@@ -11,8 +11,11 @@ city_name = input("Enter city name: ")
 # Created final url with addition of api_key and city_name
 Final_url = url + "appid=" + api_key + "&q=" + city_name
 
-response = requests.get(Final_url).json()
+try:    
+    response = requests.get(Final_url).json()
 
-temperature = response['main']['temp']
+    temperature = response['main']['temp']
 
-print(temperature)
+    print(f"{city_name}'s temperature is {temperature}°C")
+except KeyError:
+    print("Please enter the valid city name!!")
